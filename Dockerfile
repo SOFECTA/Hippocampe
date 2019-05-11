@@ -17,7 +17,7 @@ RUN npm install -g bower
 RUN pip install --upgrade pip && \
     pip install apscheduler \
 	Configparser \
-	elasticsearch \
+	elasticsearch5 \
 	flask \
 	python-dateutil \
 	requests \
@@ -32,5 +32,7 @@ RUN chown -R hippo:hippo /opt/Hippocampe /docker-entrypoint.sh
 USER hippo
 
 RUN cd /opt/Hippocampe/core/static && bower install
+
+EXPOSE 5000
 
 ENTRYPOINT /docker-entrypoint.sh
