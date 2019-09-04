@@ -13,11 +13,14 @@ RUN apk add --update --no-cache python \
     nodejs \
     nodejs-npm
 
+#	elasticsearch==5.5.3 \
+#	elasticsearch=~6 \
+
 RUN npm install -g bower
 RUN pip install --upgrade pip && \
     pip install apscheduler \
 	Configparser \
-	elasticsearch5 \
+        elasticsearch6>=6.4.2 \
 	flask \
 	python-dateutil \
 	requests \

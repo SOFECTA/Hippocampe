@@ -31,8 +31,8 @@ class Index(object):
 		self.typeNameES = str()
 		self.docMapping = dict()
 		self.es = getES()
-		#self.logger = logging.getLogger('app.shadowbook')		
-		
+		#self.logger = logging.getLogger('app.shadowbook')
+
 	def create(self):
 		#create indexES instance
 		indexES = client.IndicesClient(self.es)
@@ -46,11 +46,11 @@ class Index(object):
 			else:
 				#type does not exists, creating it with the mapping to apply
 				#logger.info('type %s does no exist, creating it', self.typeNameES)
-				indexES.put_mapping(doc_type = self.typeNameES, body = self.docMapping)
+				indexES.put_mapping(doc_type = self.typeNameES, body = self.docMapping, update_all_types = True)
 		else:
 			#index does not exists, neither type (type can't exist without index)
 			#creating both
 			#logger.info('index %s and type %s do not exist, creating them', self.indexNameES, self.typeNameES)
 			indexES.create(index = self.indexNameES)
 			#indicate mapping which applies only on index/type
-			indexES.put_mapping(doc_type = self.typeNameES, body = self.docMapping)
+			indexES.put_mapping(doc_type = self.typeNameES, body = self.docMapping, update_all_types = True)
