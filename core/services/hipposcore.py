@@ -6,7 +6,8 @@ from time import strftime
 from modules.hipposcore.ExistingSource import ExistingSource
 import dateutil.parser
 from math import exp
-from werkzeug.contrib.cache import SimpleCache
+#from werkzeug.contrib.cache import SimpleCache
+from flask_caching import Cache
 import logging
 logger = logging.getLogger(__name__)
 def calcHipposcore(dictResult):
@@ -28,8 +29,9 @@ def calcHipposcore(dictResult):
 		now = strftime("%Y%m%dT%H%M%S%z")
 		P = float()
 		#a cache is used to speed up the source's score retrieve
-		cache = SimpleCache()
-		
+		#cache = SimpleCache()
+		cache = Cache(config={'CACHE_TYPE': 'simple'})
+
 		for ioc, listMatches in dictResult.items():
 			#if there is no match for the ioc
 			#listmaches will be empt, then hipposcore will be 0

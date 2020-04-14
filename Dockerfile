@@ -16,11 +16,12 @@ RUN apk add --update --no-cache python \
 RUN npm install -g bower
 RUN pip install --upgrade pip && \
     pip install apscheduler \
-	Configparser \
-    elasticsearch \
+	configparser \
+        elasticsearch>="6.0.0,<7.0.0" \
 	flask \
 	python-dateutil \
-    requests
+        requests \
+        flask-caching
 
 COPY ./core /opt/Hippocampe/core
 COPY docker-entrypoint.sh /
